@@ -25,7 +25,15 @@ def main():
         sys.exit(-1)
     filename = sys.argv[1]
     with open(filename) as f:
-       analyse_block(f.read())
+        if filename.endswith(".py"):
+            # it's a Python source code file
+            analyse_block(f.read())
+        ###elif filename.endswith(".ipynb"):
+            # it's a Jupyter notebook file
+            # open notebook with JSON
+            # iterate over blocks, looking for code blocks
+            # for each code block, run analyse_block and
+            # sum results for counts
 
 main()
 
