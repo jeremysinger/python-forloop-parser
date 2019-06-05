@@ -1,4 +1,5 @@
 import ast
+import json
 import sys
 
 def analyse_block(codestring):
@@ -53,12 +54,19 @@ def main():
             code = f.read()
             analyse_block(code)
             analyse_loop_depth(code)
-        ###elif filename.endswith(".ipynb"):
+        elif filename.endswith(".ipynb"):
             # it's a Jupyter notebook file
             # open notebook with JSON
+            notebook = json.load(f)
             # iterate over blocks, looking for code blocks
-            # for each code block, run analyse_block and
-            # sum results for counts
+            for cell in notebook['cells']:
+                if cell['cell_type'] == 'code':
+                    # for each code block, run analyse_block and
+                    # sum results for counts
+                    code = '\n'.join(cell['source'])
+                    analyse_block(code)
+                    analyse_loop_depth(code)
+                
 
 main()
 
