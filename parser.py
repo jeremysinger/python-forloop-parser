@@ -72,7 +72,9 @@ def main():
                 if cell['cell_type'] == 'code':
                     # for each code block, run analyse_block and
                     # sum results for counts
-                    code = '\n'.join(cell['source'])
+                    # remove Jupyter % directive lines
+                    python_code_lines = [ line for line in cell['source'] if not line.startswith("%") ]
+                    code = '\n'.join(python_code_lines)
                     tmp_pair = analyse_block(code)
                     numLoops += tmp_pair[0]
                     numRange += tmp_pair[1]
