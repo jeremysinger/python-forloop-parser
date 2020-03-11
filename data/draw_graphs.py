@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-d = pd.read_csv('python_3_notebook_data.csv')
+d = pd.read_csv('full_python_3_notebook_data.csv')
 loops = d['ForLoops']
 depth = d['MaxDepth']
 
@@ -27,7 +27,7 @@ ax.set_xticklabels(xlabels)
 # Phil's suggestion - 2nd y axis on right with percentages
 ax2 = ax.twinx()
 mn, mx = ax.get_ylim()
-ax2.set_ylim(mn*(100/3792), mx*(100/3792))
+ax2.set_ylim(mn*(100/len(loops)), mx*(100/len(loops)))
 ax2.set_ylabel('percent', fontsize='x-large')
 
 ax.set_xlabel('number of for loops in notebook', fontsize='x-large')
