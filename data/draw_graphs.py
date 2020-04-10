@@ -21,17 +21,20 @@ xlabels[-1] = ''
 
 N_labels = len(xlabels)
 plt.xlim([0, 20])
-plt.xticks(1 * np.arange(N_labels)+0.5)
+plt.xticks(1 * np.arange(N_labels)+0.5, fontsize=16 )
 ax.set_xticklabels(xlabels)
+
+ax.yaxis.set_tick_params(labelsize=16)
 
 # Phil's suggestion - 2nd y axis on right with percentages
 ax2 = ax.twinx()
 mn, mx = ax.get_ylim()
 ax2.set_ylim(mn*(100/len(loops)), mx*(100/len(loops)))
-ax2.set_ylabel('percent', fontsize='x-large')
+ax2.set_ylabel('percent', fontsize=16)
+ax2.yaxis.set_tick_params(labelsize=16)
 
-ax.set_xlabel('number of for loops in notebook', fontsize='x-large')
-ax.set_ylabel('notebooks', fontsize='x-large')
+ax.set_xlabel('number of for loops in notebook', fontsize=16)
+ax.set_ylabel('notebooks', fontsize=16)
 
 #plt.yticks([])
 #plt.title('')
